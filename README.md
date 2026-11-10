@@ -410,3 +410,13 @@ https://github.com/bangjuhyeon-ai/dev-workstation
 
 
 
+## 9. 실습 결과 화면
+
+### 1) Docker 포트 매핑
+![Docker Port Mapping](docs/docker-port-mapping.png)
+
+### 2) Bind Mount 실습
+![Bind Mount](docs/bind-mount.png)
+
+### 3) Docker Volume 데이터 보존
+![Docker Volume Persistence](docs/docker-volume-persistence.png)
