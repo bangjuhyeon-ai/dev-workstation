@@ -1,0 +1,165 @@
+
+[1. 개발 환경 확인]
+
+명령어:
+git --version
+
+실행 결과:
+git version 2.56.0.windows.4
+
+명령어:
+docker --version
+
+실행 결과:
+Docker version 29.9.3, build 5457199
+
+
+[2. Docker Engine 확인]
+
+명령어:
+docker info
+
+실행 결과:
+Server Version: 29.9.3
+Operating System: Docker Desktop
+Kernel Version: 6.18.58.1-microsoft-standard-WSL2
+CPUs: 24
+Total Memory: 15.25GiB
+
+Docker Engine이 정상적으로 실행되는 것을 확인하였다.
+
+
+[3. Docker 이미지 및 컨테이너 확인]
+
+명령어:
+docker images
+
+실행 결과:
+alpine
+hello-world
+my-first-web
+nginx
+ubuntu
+
+명령어:
+docker ps
+
+실행 결과:
+my-first-container: 실행 중
+bind-web: 실행 중
+
+명령어:
+docker ps -a
+
+실행 결과:
+실행 중인 컨테이너와 종료된 컨테이너를 확인하였다.
+
+
+[4. Hello World 실행]
+
+명령어:
+docker run hello-world
+
+실행 결과:
+Hello from Docker!
+
+Docker가 정상적으로 작동하는 것을 확인하였다.
+
+
+[5. Ubuntu 컨테이너 실습]
+
+명령어:
+docker run -it --name ubuntu-practice ubuntu bash
+
+컨테이너 내부 명령어:
+ls
+echo "Hello from Ubuntu!"
+exit
+
+실행 결과:
+Hello from Ubuntu!
+
+Ubuntu 컨테이너 내부에서 명령어 실행에 성공하였다.
+
+
+[6. Linux 파일 권한 변경]
+
+파일 권한 확인:
+ls -l /tmp/permission-test.txt
+
+변경 명령어:
+chmod 600 /tmp/permission-test.txt
+
+변경 결과:
+-rw------- 
+
+기본 권한 644에서 600으로 변경하였다.
+
+
+[7. Linux 폴더 권한 변경]
+
+폴더 권한 확인:
+ls -ld /tmp/permission-dir
+
+변경 명령어:
+chmod 700 /tmp/permission-dir
+
+변경 결과:
+drwx------
+
+기본 권한 755에서 700으로 변경하였다.
+
+
+[8. Nginx 컨테이너 내부 접속]
+
+명령어:
+docker exec -it my-first-container sh
+
+컨테이너 내부 명령어:
+ls
+echo "Hello from Nginx Container!"
+exit
+
+실행 결과:
+Hello from Nginx Container!
+
+컨테이너 내부에서 작업한 후 exit로 나와도 기존 컨테이너가 계속 실행되는 것을 확인하였다.
+
+
+[9. Docker 로그 및 자원 사용량 확인]
+
+명령어:
+docker logs my-first-container
+
+실행 결과:
+Nginx 서버 시작 로그와 웹페이지 요청 기록을 확인하였다.
+HTTP GET 요청이 정상 처리된 것을 확인하였다.
+
+명령어:
+docker stats --no-stream my-first-container
+
+실행 결과:
+CPU, 메모리, 네트워크 및 블록 I/O 사용량을 확인하였다.
+
+
+[10. Docker Volume 데이터 보존]
+
+명령어:
+docker volume create site-data
+
+실행 결과:
+site-data
+
+명령어:
+docker rm volume-test
+
+실행 결과:
+기존 컨테이너 삭제 완료
+
+명령어:
+docker run --rm -v site-data:/data alpine cat /data/test.txt
+
+실행 결과:
+Docker Volume 데이터 보존 성공!
+
+기존 컨테이너를 삭제한 후에도 Volume에 저장된 데이터가 유지되는 것을 확인하였다.
