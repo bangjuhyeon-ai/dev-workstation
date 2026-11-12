@@ -420,3 +420,123 @@ https://github.com/bangjuhyeon-ai/dev-workstation
 
 ### 3) Docker Volume 데이터 보존
 ![Docker Volume Persistence](docs/docker-volume-persistence.png)
+
+## 10. CLI 명령어 및 파일 관리 실습
+
+Windows PowerShell을 이용하여 기본적인 파일 및 폴더 관리 명령어를 실습하였다.
+
+| 실습 내용 | 사용 명령어 |
+|---|---|
+| 현재 위치 확인 | Get-Location |
+| 숨김 파일 포함 목록 확인 | Get-ChildItem -Force |
+| 폴더 생성 | New-Item -ItemType Directory |
+| 빈 파일 생성 | New-Item -ItemType File |
+| 파일 내용 작성 | Set-Content |
+| 파일 내용 확인 | Get-Content |
+| 파일 복사 | Copy-Item |
+| 파일 이름 변경 | Rename-Item |
+| 파일 이동 | Move-Item |
+| 파일 삭제 | Remove-Item |
+| 위치 이동 | Set-Location |
+
+### 실습 결과
+
+- 파일과 폴더를 생성하고 목록을 확인하였다.
+- 파일 내용을 작성하고 복사 및 이름 변경을 진행하였다.
+- 파일을 다른 폴더로 이동하고 삭제하는 과정을 실습하였다.
+- 상대 경로를 이용하여 작업 위치를 변경하였다.
+
+## 11. Linux 파일 및 폴더 권한 실습
+
+Ubuntu 컨테이너에서 Linux 파일 및 폴더의 권한을 확인하고 변경하였다.
+
+### 파일 권한 변경
+
+```bash
+ls -l /tmp/permission-test.txt
+chmod 600 /tmp/permission-test.txt
+ls -l /tmp/permission-test.txt
+```
+
+기본 파일 권한은 644였으며, chmod 명령어를 이용하여 600으로 변경하였다.
+
+### 폴더 권한 변경
+
+```bash
+mkdir /tmp/permission-dir
+ls -ld /tmp/permission-dir
+chmod 700 /tmp/permission-dir
+ls -ld /tmp/permission-dir
+```
+
+기본 폴더 권한은 755였으며, chmod 명령어를 이용하여 700으로 변경하였다.
+
+### 권한의 의미
+
+- r(Read): 읽기 권한
+- w(Write): 쓰기 권한
+- x(Execute): 실행 권한 또는 디렉터리 접근 권한
+
+숫자 권한은 r=4, w=2, x=1을 기준으로 계산한다.
+
+- 755: 소유자는 읽기, 쓰기, 실행 가능하며 다른 사용자는 읽기와 실행 가능
+- 644: 소유자는 읽기와 쓰기 가능하며 다른 사용자는 읽기 가능
+- 700: 소유자만 읽기, 쓰기, 실행 가능
+- 600: 소유자만 읽기와 쓰기 가능
+
+## 12. Docker 추가 실습
+
+### 12-1. Hello World 실행
+
+```powershell
+docker run hello-world
+```
+
+Docker에서 제공하는 테스트 이미지를 실행하여 Docker가 정상적으로 작동하는 것을 확인하였다.
+
+### 12-2. Ubuntu 컨테이너 실행
+
+```powershell
+docker pull ubuntu
+docker run -it --name ubuntu-practice ubuntu bash
+```
+
+Ubuntu 컨테이너 내부에서 다음 명령어를 실행하였다.
+
+```bash
+ls
+echo "Hello from Ubuntu!"
+exit
+```
+
+컨테이너 내부의 파일 목록을 확인하고 echo 명령어로 문자열을 출력하였다.
+
+### 12-3. 컨테이너 실행 상태 비교
+
+```powershell
+docker ps
+docker ps -a
+```
+
+실행 중인 컨테이너와 종료된 컨테이너의 상태를 비교하였다.
+
+또한 다음 명령어로 실행 중인 Nginx 컨테이너 내부에 접속하였다.
+
+```powershell
+docker exec -it my-first-container sh
+```
+
+컨테이너 내부에서 명령어를 실행한 뒤 exit로 빠져나와도 기존 컨테이너가 계속 실행되는 것을 확인하였다.
+
+## 13. Git 사용자 설정 및 확인
+
+Git 사용자 정보와 기본 브랜치를 설정하고 현재 설정을 확인하였다.
+
+```powershell
+git config --global user.name "bangjuhyeon-ai"
+git config --global user.email "351447346+bangjuhyeon-ai@users.noreply.github.com"
+git config --global init.defaultBranch main
+git config --global --list
+```
+
+Git 사용자 정보와 기본 브랜치 설정이 정상적으로 적용되는 것을 확인하였다.
